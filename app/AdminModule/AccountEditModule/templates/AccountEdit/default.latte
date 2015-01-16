@@ -1,0 +1,21 @@
+{block head}
+
+{/block}
+{block content}
+
+{if $presenter->isTurnedOn("changePassword")}
+<h2>Změnit heslo</h2>
+{control changePasswordForm}
+{/if}
+
+{if $presenter->isTurnedOn("changeRealName")}
+<br>
+<h2>Změnit jméno</h2>
+{control changeRealNameForm}
+{/if}
+
+{if $presenter->isTurnedOn("changeEmail")}
+<br>
+<h2>Změnit e-mail</h2>
+{control changeEmailForm}
+{/if}

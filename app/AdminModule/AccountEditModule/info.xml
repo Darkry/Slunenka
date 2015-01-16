@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <editable>true</editable>
+    <hasPrivilegies>false</hasPrivilegies>
+    <realName>Editace účtu</realName>
+    <component state="on">
+        <name>accountEditation</name>
+        <realName>Editace účtu</realName>
+        <options>
+            <set name="changePassword">true</set>
+            <set name="changeRealName">true</set>
+            <set name="changeEmail">true</set>
+        </options>
+    </component>
+</root>

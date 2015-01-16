@@ -1,0 +1,28 @@
+{block head}
+{css formStyle}
+{js confirm}
+{js ajax}
+{/block}
+{block content}
+<h2>Galerie</h2>
+<table class="stripedTable" n:snippet="galleriesList">
+    <tr class="th"><th>Název:</th><th n:if="$presenter->isOptionAllowed('Galleries','galleryDescription')">Popis:</th><th>Počet obrázků:</th><th></th></tr>
+    <tr n:foreach="$galleries as $gallery" n:class="$iterator->isOdd() ? odd">
+        <td>{$gallery->getName()}</td>
+        <td n:if="$presenter->isOptionAllowed('Galleries','galleryDescription')">{$gallery->getText()|truncate:50}</td>
+        <td>{count($gallery->getImages())}</td>
+        <td>
+            {if $presenter->isAllowed('Galleries', 'deleteGalleries')}
+                <a n:href="deleteGallery!, $gallery->getId()" class="ajax" data-confirm="Opravdu chcete vymazat galerii {$gallery->getName()} a všechny obrázky, které obsahuje?">
+                    <img src="{$basePath}/DA/icons/cross.png">
+                </a>
+            {/if}
+            <a n:href="galleryDetail, $gallery->getId()"><img src="{$basePath}/DA/icons/magnifier.png"></a>
+        </td>
+    </tr>
+</table>
+
+{if $presenter->isAllowed("Galleries", "addGalleries")}
+<br><h2>Přidat galerii</h2>
+{control addGalleryForm}
+{/if}

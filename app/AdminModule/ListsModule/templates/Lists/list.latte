@@ -1,0 +1,47 @@
+{block head}
+{css formStyle}
+{js confirm}
+{if $presenter->isOptionAllowed("Items","isDescriptionWYSIWYG")}
+    {js ckeditor/ckeditor}
+    {js jqueryui}
+    {css jqueryui}
+{/if}
+<style type="text/css">
+    td, th {
+        vertical-align: middle;
+    }
+</style>
+{/block}
+{block content}
+
+{if $presenter->isAllowed("Items", "addItems")}
+<h2>Přidat {$presenter->getSetting("Items", "itemName")}</h2>
+    {control addItemForm}
+{/if}
+<br>
+<h2>Seznam {$presenter->getSetting("Items", "itemName")}</h2>
+
+<table class="stripedTable">
+    <tr class="th"><th>Název</th><th n:if="$presenter->isOptionAllowed('Items', 'description')">Popis</th><th n:if="$presenter->isOptionAllowed('Items','other')">{$presenter->getSetting("Items","otherName")}</th>
+        {if $presenter->isOptionAllowed("Items","image")}
+            {for $i = 1; $i <= $presenter->getSetting("Items","imageCount"); $i++}
+                <th>Obrázek</th>
+            {/for}
+        {/if}
+        <th></th></tr>
+    <tr n:foreach="$items as $item"  n:class="$iterator->isOdd() ? odd">
+        <td>{$item->getName()}</td>
+        {var $description = strip_tags($item->getDescription())}
+        <td n:if="$presenter->isOptionAllowed('Items', 'description')">{!$description|truncate:50}</td>
+        <td n:if="$presenter->isOptionAllowed('Items','other')">{$item->getOther()}</td>
+        {if $presenter->isOptionAllowed("Items","image")}
+            {foreach $item->getImages() as $image}
+        <td><img src="{$basePath}/upload/{$image->getThumbnail()}" width="80"></td>
+            {/foreach}
+        {/if}
+        <td>
+            <a n:href="item, $item->getId()" n:if="$presenter->isAllowed('Items', 'editItems')" style="float: left;"><img src="{$basePath}/DA/icons/edit.png" alt="Upravit položku"></a>
+            <a n:href="deleteItem!, $item->getId()" data-confirm="Opravdu chcete tuto položku smazat?" n:if="$presenter->isAllowed('Items', 'deleteItems')"><img src="{$basePath}/DA/icons/cross.png" alt="Smazat položku"></a>
+        </td>
+    </tr>
+</table>

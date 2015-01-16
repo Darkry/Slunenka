@@ -1,0 +1,21 @@
+{block head}
+        <script type="text/javascript">
+            $('document').ready(function() {
+                {foreach $flashes as $flash}
+                	{if $flash->type == "success"}
+                		alertify.success({$flash->message});
+                	{elseif $flash->type == "error"}
+                		alertify.error({$flash->message});
+                	{else}
+                		alertify.log({$flash->message});
+                	{/if}
+                {/foreach}
+            });
+        </script>
+{/block}
+{block content}
+<div id="login">
+<h2>Přihlášení</h2>
+{control signInForm}
+<a n:href="forgottenPassword">Zapomenuté jméno nebo heslo</a>
+</div>

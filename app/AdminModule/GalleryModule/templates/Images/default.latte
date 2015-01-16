@@ -1,0 +1,35 @@
+{block head}
+    {js jqueryui}
+    {css jqueryui}
+    {js ajax}
+    {css formStyle}
+    {js confirm}
+{/block}
+{block content}
+<h2>Nahrát obrázky</h2>
+{control plupload}
+<h2>Čeká na vyplnění informací:</h2>
+{snippet waitingImages}
+    {ifset $waitingImg}
+        <table>
+        {foreach $waitingImg as $img}
+         {? $form["imagePath"]->setDefaultValue($img)}
+         <tr style="border-bottom: 1px solid gray;">
+             <td style="vertical-align: middle; padding-right: 5px;">
+                 <a n:href="deleteImage!, $img" class="ajax" data-confirm="Opravdu chcete smazat tento obrázek?" n:if="$presenter->isAllowed('Images','deleteImages')">
+                     <img src="{$basePath}/DA/icons/cross.png">
+                 </a>
+             </td>
+            <td style="vertical-align: middle;">
+                {if $presenter->isOptionAllowed("Images","thumbnails")}
+                    <img src="{$basePath}/upload/min_{$img}">
+                {else}
+                    <img src="{$basePath}/upload/{$img}" style="width: 150px">
+                {/if}
+            </td>
+            <td style="padding-bottom: 20px; padding-top: 20px">{control fillImageInfoForm}</td>
+        </tr>
+        {/foreach}
+        </table>
+    {/ifset}
+{/snippet}

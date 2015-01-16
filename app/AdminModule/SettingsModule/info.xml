@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <editable>false</editable>
+    <hasPrivilegies>true</hasPrivilegies>
+    <realName>Nastavení</realName>
+    <component state="on">
+        <name>Roles</name>
+        <realName>Role a oprávnění</realName>
+        <action state="on">
+            <name>editUserRoles</name>
+            <realName>Měnit role uživatelů</realName>
+        </action>
+        <action state="on">
+            <name>editRolesPermission</name>
+            <realName>Měnit práva rolí</realName>
+        </action>
+        <action state="on">
+            <name>addRoles</name>
+            <realName>Přidávat role</realName>
+        </action>
+        <action state="on">
+            <name>deleteRoles</name>
+            <realName>Mazat role</realName>
+        </action>
+    </component>
+    <component state="on">
+        <name>Users</name>
+        <realName>Uživatelé administrace</realName>
+        <action state="on">
+            <name>editUsers</name>
+            <realName>Upravit uživatele</realName>
+        </action>
+        <action state="on">
+            <name>deleteUsers</name>
+            <realName>Mazat uživatele</realName>
+        </action>
+        <action state="on">
+            <name>addUsers</name>
+            <realName>Přidávat uživatele</realName>
+        </action>
+    </component>
+    <component state="on">
+        <name>Problem</name>
+        <realName>Problémy s administrací</realName>
+        <action state="on">
+            <name>reportProblem</name>
+            <realName>Nahlásit problém</realName>
+        </action>
+    </component>
+</root>

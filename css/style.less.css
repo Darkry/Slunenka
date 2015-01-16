@@ -1,0 +1,142 @@
+@darkPink: #ab2d53;
+@lightBlue: #38acb0;
+@darkerPink: #9b1e44;
+
+html { 
+  background: url(../images/background.png) no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+}
+
+body {
+	width: 1024px;
+	margin: 0 auto;
+	padding: 0;
+	font-family: "Myriad Pro Regular", "Myriad Pro", serif;
+}
+
+#head {
+	width: 100%;
+	height: 188px;
+	background: url("../images/header.png") no-repeat center center;
+	text-align: center;
+	font-family: "Myriad Pro Semibold", "Myriad Pro", serif;
+	text-transform: uppercase;
+	color: white;
+
+	div.centerFrame {
+		position: relative;
+		top: 20px;
+		width: 500px;
+		height: 125px;
+		margin: 0 auto;
+		background-color: @darkPink;
+
+		h2 {
+			font-size: 20px;
+			padding: 13px 0 3px 0;
+		}
+
+		h1 {
+			font-size: 40px;
+			padding: 10px 0 0 0;
+		}
+
+		h3 {
+			font-family: "Myriad Pro Bold Condensed Italic", "Myriad Pro", serif;
+			font-size: 16px;
+			padding-top: 8px;
+			letter-spacing: 2px;
+		}
+
+		div.line {
+			width: 411px;
+			height: 2px;
+			background: url("../images/line.png") no-repeat center center;
+			margin: 0 auto;
+		}
+	}
+}
+
+menu {
+	height: 50px;
+	width: 100%;
+	background-color: @lightBlue;
+	list-style: none;
+
+	a {
+		zoom: 1; /* IE7 */
+	}
+
+	li {
+		float: left;
+		white-space: nowrap; /* no need for Supersubs plugin */
+		*white-space: normal; /* ...unless you support IE7 (let it wrap) */
+		-webkit-transition: background .2s;
+		transition: background .2s;
+		&:hover {
+				font-weight: bold;
+				background-color: @darkPink;
+		}
+		a {
+			color: white;
+			text-decoration: none;
+			text-transform: uppercase;
+			font-size: 18px;
+			padding: 15px 26px 0 26px;
+			height: 35px;
+			display: block;
+			cursor: pointer;
+		}
+
+		&>ul {
+			min-width: 12em; /* allow long menu items to determine submenu width */
+			*width: 12em; /* no auto sub width for IE7, see white-space comment below */
+			margin-top: 2px;
+			li {
+				background-color: @darkPink;
+				min-width: 100%;
+				height: 30px;
+				a {
+					font-family: "Myriad Pro", serif;
+					font-weight: normal;
+					font-size: 14px;
+					padding: 10px 0 0 32px;
+				}
+				ul {
+					margin-left: 2px;
+					li {
+						background-color: @darkerPink;
+						a {
+							padding-right: 5px;
+							&:hover{
+								font-weight: bold;
+							}
+						}
+					}
+				}
+				&:hover {
+					background-color: @darkerPink;
+					font-weight: normal;
+				}
+			}
+		}
+	}
+
+}
+
+#content {
+	width: 100%;
+	min-height: 500px;
+	background-color: white;
+	margin-top: 10px;
+}
+
+#footer {
+	width: 100%;
+	text-align: center;
+	color: black;
+	padding: 20px 0;
+}

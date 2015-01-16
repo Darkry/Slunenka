@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <editable>true</editable>
+    <hasPrivilegies>true</hasPrivilegies>
+    <realName>Historie administrace</realName>
+    <component state="on">
+    	<name>History</name>
+    	<realName>Historie</realName>
+    	<action state="on">
+    		<name>viewHistory</name>
+    		<realName>Vidět historii administrace</realName>
+    	</action>
+    </component>
+</root>

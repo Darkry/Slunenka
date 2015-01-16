@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <editable>true</editable>
+    <hasPrivilegies>true</hasPrivilegies>
+    <realName>Reportáže z akcí</realName>
+    <component state="on">
+        <name>Lists</name>
+        <realName>Kategorie</realName>
+        <action state="off">
+            <name>addLists</name>
+            <realName>Přidávat seznamy</realName>
+        </action>
+        <action state="off">
+            <name>deleteLists</name>
+            <realName>Mazat seznamy</realName>
+        </action>
+        <action state="off">
+            <name>editLists</name>
+            <realName>Upravovat seznamy</realName>
+        </action>
+        <options>
+            <set name="listDescription">false</set>
+            <set name="listsInMenu">true</set>
+        </options>
+    </component>
+    <component state="on">
+        <name>Items</name>
+        <realName>Položky</realName>
+        <action state="on">
+            <name>addItems</name>
+            <realName>Přidávat položky</realName>
+        </action>
+        <action state="on">
+            <name>deleteItems</name>
+            <realName>Mazat položky</realName>
+        </action>
+        <action state="on">
+            <name>editItems</name>
+            <realName>Upravovat položky</realName>
+        </action>
+        <options>
+            <set name="image">true</set>
+            <set name="description">true</set>
+            <set name="other">false</set>
+            <set name="otherRequired">true</set>
+
+            <set name="isDescriptionWYSIWYG">false</set>
+        </options>
+        <settings>
+            <set name="imageCount">1</set>
+            <set name="imageThumbnail">150x0</set>
+            <set name="otherName">Cena</set>
+            <set name="itemName">novinka</set>
+        </settings>
+    </component>
+</root>

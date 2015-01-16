@@ -1,0 +1,151 @@
+{block head}
+{js ajax}
+{js ajaxForms}
+{js jqueryui}
+{css jqueryui}
+{js confirm}
+<link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/DA/css/settings.css" type="text/css">
+<style type="text/css">
+    .ui-dialog-content span {
+        font-weight: bold;
+    }
+    .ui-dialog-content table.actions {
+        margin: 3px 0 10px 15px;
+    }
+</style>
+<script type="text/javascript">
+    $('document').ready(function() {
+
+        $("a.ajaxC").live("click", function (event) {
+            event.preventDefault();
+            if($(this).data().confirm) {
+                if(confirm($(this).data().confirm))
+                    $.get(this.href, function() {
+                        if($("#dialog").dialog("isOpen")) {
+
+                        }
+                    });
+            }
+            else
+                $.get(this.href, function(payload) {
+                                // redirect
+            if (payload.redirect) {
+                window.location.href = payload.redirect;
+                return;
+            }
+
+            // snippets
+            if (payload.snippets) {
+                for (var i in payload.snippets) {
+                    jQuery.nette.updateSnippet(i, payload.snippets[i]);
+                }
+            }
+
+                        if($("#dialog").dialog("isOpen")) {
+                            var id = $("#dialog").attr("data-id");
+                            var source = $("#"+id);
+                            $("#dialog").dialog("close");
+                            $("#dialog").html(source.html()).attr("data-id", id).dialog("option", "title", source.attr("title")).dialog("open");
+                             source.parent().parent().css("display","block");
+                        }
+                    });
+        });
+
+        $("form.changeUserRoleForm select").change(function() {
+                $(this).parent().ajaxSubmit();
+                return false;
+        });
+
+        $("ul.roles li>span").live("click", function() {
+            $(this).parent().find(">ul").slideToggle();
+        });
+
+        $("#dialog").dialog({
+           autoOpen: false,
+           modal: true
+        }).css("display","none");
+
+        $("span.openDialog").live("click", function() {
+            var id = $(this).attr("data-id");
+            var source = $("#"+id);
+            $("#dialog").html(source.html()).attr("data-id", id).dialog("option", "title", source.attr("title")).dialog("open");
+        });
+    });
+</script>
+{/block}
+{block content}
+<h2>Role uživatelů</h2>
+
+{snippet userRoles}
+<table class="stripedTable">
+    <tr class="th"><th>Jméno</th><th>Role</th></tr>
+    <tr n:foreach="$users as $user" n:class="$iterator->isOdd() ? odd">
+        <th>{$user->realName}</th>
+        <td>
+            {if $presenter->isAllowed("Roles", "editUserRoles") && $userName != $user->userName}
+                {if $user->role->getName() == "admin" && $userRole != "admin"}
+                    {$user->role->getName()}
+                {else}
+                    {form changeUserRoleForm}
+                        {? $form->getElementPrototype()->id = 'changeUserRoleForm'.$user->id}
+                        {? $form["role"]->setDefaultValue($user->role->getId())} {input role}
+                        {? $form["userId"]->setValue($user->getId())} {input userId}
+                    {/form}
+                {/if}
+            {else}
+                {$user->role->getName()}
+            {/if}
+        </td>
+    </tr>
+</table>
+{/snippet}
+<br>
+
+<div id="dialog"></div>
+
+<h2>Nastavení rolí</h2>
+{snippet roles}
+<ul class="roles">
+    <li n:foreach="$roles as $role"><a n:href="deleteRole!, $role->id" data-confirm="Opravdu chcete tuto roli smazat?" class="ajax" n:if="$presenter->isAllowed('Roles', 'deleteRoles') && strtolower($role->name) != 'admin'"><img src="{$basePath}/DA/icons/cross.png" class="roleIcon"></a><span>{$role->name}</span>
+        <ul class="modules">
+            <li n:foreach="$modulesInfo as $moduleInfo" n:if="$moduleInfo->isEditable() && $moduleInfo->hasModulePrivilegies()">
+                    {var $components = $moduleInfo->getComponents()}
+                    {var $roleNameForId = str_replace(" ", "-", $role->name)}
+                <span class="openDialog" data-id="dialog-{$roleNameForId}-{$moduleInfo->getModuleName()}">{$moduleInfo->getModuleRealName()}</span>
+                <div id="dialog-{$roleNameForId}-{$moduleInfo->getModuleName()}" title="{$role->name} - {$moduleInfo->getModuleRealName()}" class="dialogContent">
+                    <ul>
+                        <li n:foreach="$components as $compName => $component" n:if="$moduleInfo->hasActions($compName)">
+                            <span>{$component["realName"]}</span>
+                            <table class="stripedTable actions">
+                                <tr n:foreach="$moduleInfo->getActiveComponentActions($compName) as $actionName => $action" n:class="$iterator->isOdd() ? 'odd'">
+                                    <td>
+                                        {if $acl->isAllowed($role->name, $moduleInfo->getModuleName(), $compName, $actionName)}
+                                        <img src="{$basePath}/DA/images/checkmark.png" alt="✔">
+                                        {else}
+                                        <img src="{$basePath}/DA/images/delete.png" alt="✖">
+                                        {/if}{$action["realName"]}
+                                    </td>
+                                    <td n:if="$userRole != $role->name && $acl->isAllowed($userRole, $moduleInfo->getModuleName(), $compName, $actionName) && $presenter->isAllowed('Roles','editRolesPermission') && strtolower($role->name) != 'admin'">
+                                    {if $acl->isAllowed($role->name, $moduleInfo->getModuleName(), $compName, $actionName)}
+                                        <a class="ajaxC" n:href="deletePermission!, 'modulen' => $moduleInfo->getModuleName(), 'componentn' => $compName, 'actionName' => $actionName, 'roleId' => $role->id">Zakázat</a>
+                                    {else}
+                                        <a class="ajaxC" n:href="addPermission!, 'modulen' => $moduleInfo->getModuleName(), 'componentn' => $compName, 'actionName' => $actionName, 'roleId' => $role->id">Povolit</a>
+                                    {/if}
+                                    </td>
+                                </tr>
+                            </table>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+        </ul>
+    </li>
+</ul>
+{/snippet}
+{if $presenter->isAllowed("Roles", "addRoles")}
+<br>
+<h2>Přidat roli</h2>
+{snippet addRoleForm}
+    {control addRoleForm}
+{/snippet}
+{/if}

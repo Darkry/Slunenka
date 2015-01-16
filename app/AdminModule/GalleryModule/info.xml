@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <editable>true</editable>
+    <hasPrivilegies>true</hasPrivilegies>
+    <realName>Galerie</realName>
+    <component state="on">
+        <name>Galleries</name>
+        <realName>Správa galerií</realName>
+        <action state="off">
+            <name>addGalleries</name>
+            <realName>Přidávat galerie</realName>
+        </action>
+        <action state="off">
+            <name>deleteGalleries</name>
+            <realName>Mazat galerie</realName>
+        </action>
+        <action state="off">
+            <name>editGalleries</name>
+            <realName>Upravovat galerie</realName>
+        </action>
+        <options>
+            <set name="galleryDescription">false</set>
+        </options>
+    </component>
+    <component state="on">
+        <name>Images</name>
+        <realName>Přidávání obrázků</realName>
+        <action state="on">
+            <name>addImages</name>
+            <realName>Přidávat obrázky</realName>
+        </action>
+        <action state="on">
+            <name>deleteImages</name>
+            <realName>Mazat obrázky</realName>
+        </action>
+        <action state="on">
+            <name>editImages</name>
+            <realName>Upravovat obrázky</realName>
+        </action>
+        <options>
+            <set name="imageName">true</set>
+            <set name="imageDescription">false</set>
+            <set name="thumbnails">true</set>
+            <set name="resizeFullImage">true</set>
+        </options>
+        <settings>
+            <set name="thumbnail-x">0</set>
+            <set name="thumbnail-y">150</set> 
+
+            <set name="image-x">400</set>
+            <set name="image-y">0</set> 
+        </settings>
+    </component>
+</root>

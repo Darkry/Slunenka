@@ -1,0 +1,97 @@
+{block head}
+{js ajax}
+{js ajaxForms}
+{js confirm}
+<style type="text/css">
+    .editUser {
+        cursor: pointer;
+    }
+
+    .realName {
+        font-weight: bold;
+    }
+
+    tr .form {
+        display: none;
+    }
+
+    #addUserForm table tr th {
+        vertical-align: middle;
+        text-align: right;
+        padding-right: 5px;
+    }
+</style>
+<script type="text/javascript">
+    $('document').ready(function() {
+        {if $presenter->isAllowed('Users', 'editUsers')}
+        $('.editUser').click(function(event) {
+            event.preventDefault();
+            if($(this).data().id) {
+                var id = $(this).data().id;
+                var tr = $(this).parent().parent().parent();
+
+                tr.find("td span").hide();
+                tr.find("td .form").show();
+            }
+        });
+        {/if}
+    });
+</script>
+{/block}
+{block content}
+<h2>Uživatelé administrace</h2>
+{snippet usersTable}
+<table class="stripedTable">
+    <tr class="th">
+        <th>Jméno</th>
+        <th>Přihlašovací jméno</th>
+        <th>E-mail</th>
+        <th>Role</th>
+        <th></th>
+    </tr>
+
+    {foreach $users as $user}
+    <tr n:class="$iterator->isOdd() ? odd, 'user'.$user->getId()">
+       {if $presenter->isAllowed('Users', 'editUsers') && $user->getUserName() != $userName && ($user->getRole()->getName() != "admin" || ($user->getRole()->getName() == "admin" && $userRole == "admin"))}
+            {form editUserForm}
+                    {? $form->getElementPrototype()->id = 'editUserForm'.$user->id}
+                    {? $form["role"]->setDefaultValue($user->getRole()->getId())}
+                    {? $form["userId"]->setValue($user->getId())}
+                    {? $form["realName"]->setValue($user->getRealName())}
+                    {? $form["userName"]->setValue($user->getUserName())}
+                    {? $form["email"]->setValue($user->getEmail())}
+        <td style="display: none;">{input userId}</td>
+        <td class="realName"><span>{$user->getRealName()}</span><div class="form">{input realName}</div></td>
+        <td class="userName"><span>{$user->getUserName()}</span><div class="form">{input userName}</div></td>
+        <td class="email"><span>{$user->getEmail()}</span><div class="form">{input email}</div></td>
+        <td class="role"><span>{$user->getRole()->getName()}</span><div class="form">{input role}</div></td>
+        <td style="padding-top: 5px;">
+            <span><a class="editUser" data-id="{$user->getId()}" n:if="$presenter->isAllowed('Users', 'editUsers')"><img src="{$basePath}/DA/icons/edit.png" alt="Upravit uživatele"></a>
+                <a class="ajax" n:if="$presenter->isAllowed('Users', 'deleteUsers')" n:href="deleteUser!, $user->getId()" data-confirm="Opravdu chcete tohoto uživatele smazat?"><img src="{$basePath}/DA/icons/cross.png" alt="Smazat uživatele"></a></span>
+            <div class="sendForm form">{input submit}</div>
+        </td>
+            {/form}
+            {else}
+
+        <td class="realName"><span>{$user->getRealName()}</span></td>
+        <td class="userName"><span>{$user->getUserName()}</span></td>
+        <td class="email"><span>{$user->getEmail()}</span></td>
+        <td class="role"><span>{$user->getRole()->getName()}</span></td>
+        <td style="padding-top: 5px;">
+            <span>
+                <a class="ajax" n:if="$presenter->isAllowed('Users', 'deleteUsers') && $user->getUserName() != $userName && ($user->getRole()->getName() != 'admin' || $userRole == 'admin')" n:href="deleteUser!, $user->id" data-confirm="Opravdu chcete tohoto uživatele smazat?"><img src="{$basePath}/DA/icons/cross.png" alt="Smazat uživatele"></a>
+            </span>
+            {/if}
+    </tr>
+    {/foreach}
+</table>
+
+{if $presenter->isAllowed("Users", "addUsers")}
+<br>
+<h2>Přidat uživatele</h2>
+<div id="addUserForm">
+{control addUserForm}
+</div>
+{/if}
+
+{/snippet}

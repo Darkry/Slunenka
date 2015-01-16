@@ -1,0 +1,34 @@
+{block head}
+    {js ajax}
+    {js confirm}
+    {css textTable}
+{/block}
+{block content}
+<h2>Texty na webu</h2>
+
+<table class="stripedTable" n:snippet="textTable">
+    <tr class="th">
+        <th n:if="$options[date]">Datum</th>
+        <th n:if="$options[author]">Autor</th>
+        <th n:if="$options[name]">Název</th>
+        <th n:if="$options[shortVersion]">Zkrácená verze</th>
+        <th>Text</th>
+        <th></th>
+    </tr>
+    <tr n:foreach="$texts as $text">
+        <td n:if="$options[date]">{$text->getDate()|date:"j. n. Y"}</td>
+        <td n:if="$options[author]">{$text->getAuthor()}</td>
+        <td n:if="$options[name]">{$text->getName()}</td>
+        {var $shortText = strip_tags($text->getShortVersion())}
+        <td n:if="$options[shortVersion]">{!$shortText|truncate:15}</td>
+        {var $textd = strip_tags($text->getText())}
+        <td>{!$textd|truncate:30}</td>
+        <td>
+            <a n:if="$presenter->isAllowed('Texts', 'editTexts')" n:href="text, $text->id"><img src="{$basePath}/DA/icons/edit.png" alt="Upravit text"></a>
+            <a class="ajax" n:if="$presenter->isAllowed('Texts', 'deleteTexts')" n:href="deleteText!, $text->id" data-confirm="Opravdu chcete tento text smazat?"><img src="{$basePath}/DA/icons/cross.png" alt="Smazat text"></a>
+        </td>
+    </tr>
+</table>
+{control vp}
+<br>
+<a n:href="" id="addText" n:if="$presenter->isAllowed('Texts', 'addTexts')">Přidat text</a>

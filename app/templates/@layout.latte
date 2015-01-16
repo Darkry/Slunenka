@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+	<title>{ifset $title}{$title} | Sluněnka Olomouc{else}Sluněnka - lesní školka Olomouc{/ifset}</title>
+    <link rel="stylesheet" href="{$basePath}/css/reset.css" type="text/css">
+    <link rel="stylesheet" href="{$basePath}/css/fonts.css" type="text/css">
+	<link rel="stylesheet" href="{$basePath}/css/style.css" type="text/css">
+    <link rel="stylesheet" href="{$basePath}/css/superfish.css" type="text/css">
+    <link rel="icon" href="{$basePath}/favicon.ico" type="image/icon">
+
+	<script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
+    <script type="text/javascript" src="{$basePath}/js/jquery.js"></script>
+    <script type="text/javascript" src="{$basePath}/js/hoverIntent.js"></script>
+    <script type="text/javascript" src="{$basePath}/js/superfish.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function(){
+            $('menu').superfish({
+                delay: 300
+            });
+        });
+    </script>
+
+	{block head}{/block}
+</head>
+
+<body>
+    <div id="web">
+        <div id="head">
+            <div class="centerFrame">
+                <h2>Lesní školka</h2>
+                <div class="line"></div>
+                <h1>Sluněnka Olomouc</h1>
+                <div class="line"></div>
+                <h3>mateřská škola s walfdorskou pedagogikou</h3>
+            </div>
+        </div>
+
+        <nav>
+            <menu>
+                <li><a n:href="">Úvod</a></li>
+                <li><a n:href="">Školka</a>
+                <ul>
+                        <li><a n:href="">0-4 roky</a></li>
+                        <li><a n:href="">2,5-6 let</a></li>
+                        <li><a n:href="">5-10 let</a></li>
+                        <li><a n:href="">0-4 roky</a></li>
+                        <li><a n:href="">0-4 roky</a></li>
+                    </ul>
+                </li>
+                <li><a>Další aktivity</a>
+                    <ul>
+                        <li><a n:href="">0-4 roky</a></li>
+                        <li><a n:href="">2,5-6 let</a></li>
+                        <li><a n:href="">5-10 let</a></li>
+                        <li><a n:href="">0-4 roky</a></li>
+                        <li><a n:href="">0-4 roky</a></li>
+                    </ul>
+                </li>
+                <li><a n:href="">Kdo jsme</a>
+                <ul>
+                        <li><a n:href="">0-4 roky</a></li>
+                        <li><a n:href="">2,5-6 let</a></li>
+                        <li><a n:href="">5-10 let</a></li>
+                        <li><a n:href="">0-4 roky</a></li>
+                        <li><a n:href="">0-4 roky</a></li>
+                    </ul>
+                </li>
+                <li><a n:href="">Walfdorská pedagogika</a>
+                <ul>
+                        <li><a n:href="">0-4 roky</a></li>
+                        <li><a n:href="">2,5-6 let</a></li>
+                        <li><a n:href="">5-10 let</a></li>
+                        <li><a n:href="">0-4 roky</a></li>
+                        <li><a n:href="">0-4 roky</a></li>
+                    </ul>
+                </li>
+                <li><a n:href="">Podporují nás</a></li>
+            </menu>
+        </nav>
+
+        <div id="content">
+            {include #content}
+        </div>
+
+        <div class="clear"></div>
+    </div>
+    
+    <div id="footer">
+        © 2015 | Všechna práva vyhrazena | ...........
+    </div>
+    
+</body>
+</html>

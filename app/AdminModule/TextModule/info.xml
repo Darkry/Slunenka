@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <editable>true</editable>
+    <hasPrivilegies>true</hasPrivilegies>
+    <realName>Texty na webu</realName>
+    <component state="on">
+        <name>Texts</name>
+        <realName>Texty na webu</realName>
+        <action state="off">
+            <name>addTexts</name>
+            <realName>Přidávat texty</realName>
+        </action>
+        <action state="on">
+            <name>editTexts</name>
+            <realName>Editovat texty</realName>
+        </action>
+        <action state="on">
+            <name>deleteTexts</name>
+            <realName>Mazat texty</realName>
+        </action>
+        <options>
+            <set name="date">false</set>
+            <set name="shortVersion">false</set>
+            <set name="author">false</set>
+            <set name="name">true</set>
+        </options>
+    </component>
+</root>

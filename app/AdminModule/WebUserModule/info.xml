@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<root>
+    <editable>false</editable>
+    <hasPrivilegies>true</hasPrivilegies>
+    <realName>Uživatelé webu</realName>
+    <component state="on">
+        <name>UserList</name>
+        <realName>Seznam uživatelů</realName>
+        <action state="on">
+            <name>deleteUsers</name>
+            <realName>Mazat uživatele</realName>
+        </action>
+        <action state="on">
+            <name>sendNewsletter</name>
+            <realName>Posílat newsletter</realName>
+        </action>
+        <options>
+            <set name="newsletterPermission">false</set>
+            <set name="userPoints">true</set>
+        </options>
+    </component>
+</root>

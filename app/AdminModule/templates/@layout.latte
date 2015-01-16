@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
+        <meta name="description" content="DarkAdmin web administration">
+        <meta name="robots" content="{$robots}" n:ifset="$robots">
+
+        <title>{ifset $title}{$title} | DarkAdmin{else}DarkAdmin{/ifset}</title>
+
+        <link n:if="$user->isLoggedIn()" rel="stylesheet" media="screen,projection,tv" href="{$basePath}/css/reset.css" type="text/css">
+        <link n:if="$user->isLoggedIn()" rel="stylesheet" media="screen,projection,tv" href="{$basePath}/DA/css/style.css" type="text/css">
+        <link n:if="!$user->isLoggedIn()" rel="stylesheet" media="screen,projection,tv" href="{$basePath}/DA/css/loginstyle.css" type="text/css">
+        <link rel="stylesheet" media="screen,projection,tv" href="{$basePath}/DA/css/alertify.css" type="text/css">
+
+        <script type="text/javascript" src="{$basePath}/js/jquery.js"></script>
+        <script type="text/javascript" src="{$basePath}/js/netteForms.js"></script>
+        {js alertify}
+        <script type="text/javascript">
+            $('document').ready(function() {
+                $('#leveMenu ul li span').click(function() {
+                    $(this).parent().find("ul").slideToggle();
+                });
+            });
+        </script>
+	{block head}{/block}
+    </head>
+
+    <body>
+
+        <script> document.body.className+=' js' </script>
+        <div id="horniLista">
+        </div>
+        {if $user->isLoggedIn()}
+            {var $m = $modules->getModuleInfo('HistoryModule')}
+            {if $m->getComponentState("History") && $m->getActionState("History","viewHistory") && $acl->isAllowed($userRole, 'HistoryModule', 'History', 'viewHistory')}
+                <a n:href=":Admin:History:History:" id="historie"><span>Historie</span></a>
+            {/if}
+        {/if}
+        <div id="all">
+            <div id="listaIn">
+                <a n:href=":Admin:Index:Index:"><div class="logo"><h1>DarkAdmin</h1></div></a>
+                <div class="user" n:if="$user->isLoggedIn()">
+                    <a n:href=":Admin:AccountEdit:AccountEdit:" style="font-weight: bold;">{$user->getIdentity()->realName}</a> | <a class="odhlasit" n:href="logout!">Odhlásit se</a>
+                </div>
+            </div>
+            <div id="obsah">
+             {if $user->isLoggedIn()}
+                <div id="leveMenu">
+                    <ul>
+                       {var $m = $modules->getModuleInfo('TextModule')}
+                        <li n:if="$m->isEditable()"><span>Obsah webu</span>
+                            <ul>
+                                <li style="list-style-image: url('{$basePath}/DA/icons/texts.png');" n:if="$m->getComponentState('Texts')">
+                                    <a n:href=":Admin:Text:Texts:">Texty na webu</a>
+                                </li>
+                            </ul>
+                        </li>
+                        {var $m = $modules->getModuleInfo('GalleryModule')}
+                        <li n:if="$m->isEditable()"><span>Galerie</span>
+                            <ul>
+                                <li style="list-style-image: url('{$basePath}/DA/icons/gallery.png');" n:if="$m->getComponentState('Galleries')">
+                                    <a n:href=":Admin:Gallery:Galleries:">Správa galerií</a>
+                                </li>
+                                <li style="list-style-image: url('{$basePath}/DA/icons/addImage.png');" n:if="$m->getComponentState('Images') && $acl->isAllowed($userRole, 'GalleryModule', 'Images', 'addImages')">
+                                    <a n:href=":Admin:Gallery:Images:">Přidat obrázky</a>
+                                </li>
+                            </ul>
+                        </li>
+                        {var $m = $modules->getModuleInfo('ListsModule')}
+                        <li n:if="$m->isEditable()"><span>{$m->getModuleRealName()}</span>
+                            <ul>
+                                {if $m->getOption("Lists","listsInMenu") == true}
+                                <li style="list-style-image: url('{$basePath}/DA/icons/list.png');" n:foreach="$lists as $list">
+                                    <a n:href=":Admin:Lists:Lists:list, $list->getId()">{$list->getName()}</a>
+                                </li>
+                                {else}
+                                {/if}
+                            </ul>
+                        </li>
+                        {var $m = $modules->getModuleInfo('WebUserModule')}
+                        <li n:if="$m->isEditable()"><span>{$m->getModuleRealName()}</span>
+                            <ul>
+                                <li style="list-style-image: url('{$basePath}/DA/icons/user.png');" n:if="$m->getComponentState('UserList')">
+                                    <a n:href=":Admin:WebUser:User:">Seznam uživatelů</a>
+                                </li>
+                            </ul>
+                        </li>
+                        {var $m = $modules->getModuleInfo('SettingsModule')}
+                        <li n:if="$m->isEditable()"><span>Nastavení</span>
+                            <ul>
+                                <li style="list-style-image: url('{$basePath}/DA/icons/computer.png');" n:if="$m->getComponentState('Roles')">
+                                    <a n:href=":Admin:Settings:Roles:">Role a práva uživatelů</a></li>
+                                <li style="list-style-image: url('{$basePath}/DA/icons/user.png');" n:if="$m->getComponentState('Users')">
+                                    <a n:href=":Admin:Settings:Users:">Uživatelé administrace</a></li>
+                                <li style="list-style-image: url('{$basePath}/DA/icons/cross.png');" n:if="$m->getComponentState('Problem')">
+                                    <a n:href=":Admin:Settings:Problem:">Nahlásit problém</a></li>
+                            </ul>
+                        </li>
+                    </ul>
+                </div>
+                <div id="pravySloupec">
+
+                {snippet flashMessages}
+                    <script type="text/javascript">
+                        $('document').ready(function() {
+                            {foreach $flashes as $flash}
+                                {if $flash->type == "success"}
+                                    alertify.success({$flash->message});
+                                {elseif $flash->type == "error"}
+                                    alertify.error({$flash->message});
+                                {else}
+                                    alertify.log({$flash->message});
+                                {/if}
+                            {/foreach}
+                        });
+                    </script>
+                {/snippet}
+
+                    {include #content}
+                </div>
+                <div style="clear: both"></div>
+            {else}
+                {include #content}
+            {/if}
+            </div>
+        </div>
+    </body>
+</html>

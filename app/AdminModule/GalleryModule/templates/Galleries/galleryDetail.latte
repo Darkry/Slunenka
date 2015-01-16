@@ -1,0 +1,119 @@
+{block head}
+{css formStyle}
+{js confirm}
+{js ajax}
+{js ajaxForms}
+{js jqueryui}
+{css jqueryui}
+<style type="text/css">
+    #imageList {
+        max-width: 800px;
+    }
+    #imageList div.image {
+        float: left;
+        margin: 10px;
+    }
+    a.hangingButton {
+        -webkit-border-bottom-left-radius:4px;
+        -webkit-border-bottom-right-radius:4px;
+        -moz-border-radius-bottomleft:4px;
+        -moz-border-radius-bottomright:4px;
+        padding: 5px;
+        background-color: #16143B;
+        color: white;
+        text-decoration: none;
+        font-weight: bold;
+        position: relative;
+        top: 4px;
+    }
+    div.image {
+        position: relative;
+    }
+    div.image div.panel {
+        display: none;
+        color: white;
+        text-decoration: none;
+        position: absolute;
+        bottom: 0;
+        background-color: black;
+        margin-bottom: 6px;
+    }
+    div.image:hover div.panel {
+        display: block;
+    }
+</style>
+<script type="text/javascript">
+    var id, url;
+
+    $('document').ready(function() {
+       $("#editInfoDialog").dialog({
+           autoOpen: false,
+           modal: true,
+           width: 400
+        }).css("display","none");
+
+        $("#openEditGalleryDialog").click(function() {
+            $("#editInfoDialog").dialog("open");
+        });
+
+        $("#snippet--editImageDialog").dialog({
+           autoOpen: false,
+           modal: true,
+           width: 400,
+           height: 300,
+           title: "Upravit informace o obrázku"
+        });
+
+        $(".editImageDialogOpen").click(function(e) {
+            e.preventDefault();
+            id = $(this).data().id;
+            url = {link setDefaultsEditImageForm!} +"&imgId="+id;
+            $.ajax({
+                type: "GET",
+                url: url,
+                success: function(payload) {
+                    if(payload.snippets) {
+                        for(var i in payload.snippets) {
+                            //editImageDialog snippet
+                            $("#"+i).html(payload.snippets[i]);
+                        }
+                    }
+                    $("#snippet--editImageDialog").dialog( "open" );
+                }
+            });
+        });
+    });
+</script>
+{/block}
+{block content}
+<div id="editInfoDialog" title="Upravit galerii {$gallery->getName()}">
+    {control editGalleryForm}
+</div>
+
+<h2>Galerie - {$gallery->getName()}</h2>
+<table class="stripedTable">
+    <tr class="odd"><th>Název:</th><td>{$gallery->getName()}</td></tr>
+    {if $presenter->isOptionAllowed("Galleries","galleryDescription")}
+    <tr class="even"><th>Popis:</th><td>{$gallery->getText()}</td></tr>
+    {/if}
+</table>
+<a href="#" class="hangingButton" id="openEditGalleryDialog">Upravit</a>
+
+<br><br>
+
+<div n:snippet="editImageDialog">
+    {control editImageForm}
+</div>
+
+{snippet imageList}
+<div n:inner-foreach="$images as $image" id="imageList">
+    <div class="image">
+        <img src="{$basePath}/upload/{$image->getThumbnail()}">
+        <div class="panel">
+            {$image->getName()}
+            <a n:if="$presenter->isAllowed('Images', 'editImages') && ($presenter->isOptionAllowed('Images','imageName') || $presenter->isOptionAllowed('Images','imageDescription'))" href="#" class="editImageDialogOpen" data-id="{$image->getId()}"><img src="{$basePath}/DA/icons/edit.png"></a>
+            <a n:if="$presenter->isAllowed('Images', 'deleteImages')" n:href="deleteImage!, $image->getId()" class="ajax" data-confirm="Opravdu chcete smazat tento obrázek?"><img src="{$basePath}/DA/icons/cross.png"></a>
+        </div>
+    </div>
+</div>
+{/snippet}

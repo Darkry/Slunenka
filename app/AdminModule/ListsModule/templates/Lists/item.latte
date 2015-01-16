@@ -1,0 +1,40 @@
+{block head}
+    {css formStyle}
+    {js confirm}
+    {js jqueryui}
+    {css jqueryui}
+    {if $presenter->isOptionAllowed("Items","isDescriptionWYSIWYG")}
+        {js ckeditor/ckeditor}
+    {/if}
+<script type="text/javascript">
+    $('document').ready(function() {
+       $("#editItemDialog").dialog({
+           autoOpen: false,
+           modal: true,
+           width: 700
+        }).css("display","none");
+
+        $("#openEditItemDialog").click(function() {
+            $("#editItemDialog").dialog("open");
+        });
+    });
+</script>
+{/block}
+{block content}
+<small><a n:href="list, $item->getList()->getId()" style="color: black;">Zpět na {$item->getList()->getName()}</a></small>
+<h2>Položka {$item->getName()}</h2>
+
+<div id="editItemDialog" title="Upravit položku {$item->getName()}">
+    {control editItemForm}
+</div>
+
+<table class="stripedTable">
+    <tr class="odd"><th>Název:</th><td>{$item->getName()}</td></tr>
+    {if $presenter->isOptionAllowed("Items","description")}
+    <tr class="even"><th>Popis:</th><td>{!$item->getDescription()}</td></tr>
+    {/if}
+    {if $presenter->isOptionAllowed("Items","other")}
+    <tr class="even"><th>{$presenter->getSetting("Items", "otherName")}:</th><td>{$item->getOther()}</td></tr>
+    {/if}
+</table>
+<a href="#" class="hangingButton" id="openEditItemDialog">Upravit</a>
