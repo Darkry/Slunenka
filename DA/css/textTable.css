@@ -1,0 +1,57 @@
+#addText {
+    font-size: 20px;
+    color: black;
+    text-decoration: none;
+    background-color: #E9EFF8;
+    border: 1px solid gray;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 3px;
+}
+
+.paginator {
+        font-size: 95%;
+        height: 30px;
+        padding: 0;
+        margin: 0;
+}
+
+.paginator>span {
+        -webkit-border-bottom-left-radius:7px;
+        -webkit-border-bottom-right-radius:7px;
+        -moz-border-radius-bottomleft:7px;
+        -moz-border-radius-bottomright:7px;
+        border-bottom-left-radius:7px;
+        border-bottom-right-radius:7px;
+        background-color: #16143B;
+        border: 1px solid lightgray;
+        position: relative;
+        top: 4px;
+        border-top: 0;
+        padding: 0;
+}
+
+.paginator a, .paginator span {
+	color: white;
+        padding: 5px;
+        font-style: italic;
+}
+
+.paginator a {
+	text-decoration: none;
+	color: white;
+        font-weight: bold;
+}
+
+.paginator span.button {
+    color: lightgray;
+}
+
+.paginator .current {
+	background: #2E6AB1;
+	color: white;
+	font-weight: bold;
+        margin: 0;
+        padding: 5px;
+}

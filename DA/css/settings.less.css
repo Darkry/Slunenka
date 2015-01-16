@@ -1,0 +1,32 @@
+    ul.users ul {
+        padding-left: 20px;
+    }
+
+    ul.roles {
+        ul {
+            margin-left: 30px;
+            display: none;
+            list-style-type: square;
+            list-style-position: inside;
+            ul {
+                list-style-type: circle;
+            }
+            table.actions {
+                margin-left: 25px;
+                img {
+                    position: relative;
+                    top: 2px;
+                }
+            }
+        }
+        li span {
+            font-weight: bold;
+            cursor: pointer;
+        }
+    }
+    
+    .roleIcon {
+        position: relative;
+        top: 4px;
+        padding-right: 3px;
+    }

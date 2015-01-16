@@ -1,0 +1,168 @@
+body, html {
+    height: 100%;
+}
+
+h2 {
+    font-size: 150%;
+    margin-bottom: 12px;
+}
+
+#all {
+    font: 16px/1.5 "Trebuchet MS", "Geneva CE", lucida, sans-serif;
+    height: 100%;
+    position: relative;
+    z-index: 100;
+    width: 100%;
+}
+
+#historie {
+    color: black;
+    text-decoration: none;
+    position: fixed;
+    top: 140px;
+    right: 0;
+    width: 87px;
+    height: 43px;
+    display: block;
+    background: transparent url('../images/historie-back.png') top left no-repeat;
+    font-family: "Trebuchet MS", "Geneva CE", lucida, sans-serif;
+    font-size: 110%;
+    cursor: pointer;
+    z-index: 9999;
+    span {
+        position: relative;
+        top: 11px;
+        left: 13px;
+    }
+}
+
+//horní lišta
+#horniLista {
+    width: 100%;
+    height: 73px;
+    position: absolute;
+    background: transparent url('../images/horniLista.jpg') top left repeat-x;
+    top: 0;
+    left: 0;
+}
+
+#listaIn {
+    color: white;
+    height: 73px;
+    width: 100%;
+    .logo {
+    width: 152px;
+    height: 25px;
+    background: url('../images/logo.png') top left no-repeat;
+    float: left;
+    margin: 20px 0 0 40px;
+    h1 {
+    visibility: hidden;
+}
+}
+.user {
+    float: right;
+    font-weight: bold;
+    margin-top: 23px;
+    margin-right: 30px;
+    a {
+    font-weight: normal;
+    color: white;
+    text-decoration: none;
+    &:hover {
+        text-decoration: underline;
+}
+}
+}
+}
+
+
+//levé menu
+#leveMenu {
+    width: 283px;
+    height: inherit;
+    float: left;
+    padding: 20px 0 0 35px;
+    ul {
+    font-weight: bold;
+    li ul {
+    font-weight: normal;
+    display: block;
+    padding-left: 20px;
+    li {
+    list-style-position: inside;
+    a {
+    text-decoration: none;
+    color: black;
+}
+&:hover {
+    text-decoration: underline;
+}
+}
+}
+}
+}
+
+#obsah {
+    background: transparent url('../images/leveMenu.jpg') top left repeat-y;
+    margin: 0;
+    padding: 0;
+    min-height: 100%;
+}
+
+#pravySloupec {
+    width: 60%;
+    margin-left: 320px;
+    padding-top: 10px;
+}
+
+
+//jednotlivé prvky
+table th {
+    font-weight: bold;
+    text-align: left;
+}
+
+table.stripedTable {
+    border: 1px solid lightgray;
+    border-collapse: collapse;
+    tr {
+    border: 1px solid lightgray;
+    &.odd {
+    background-color: #E9EFF8;
+}
+&.th {
+    background: #16143B;
+    color: white;
+    th {
+    border-bottom: 1px solid black;
+}
+}
+td {
+    border: 1px solid lightgray;
+    padding: 2px 5px 2px 5px;
+}
+th {
+    border: 1px solid lightgray;
+    padding: 2px 20px 2px 5px;
+}
+}
+}
+
+div.flash {
+    border: 1px solid black;
+    padding: 7px 10px;
+    background-color: lightgray;
+    font-weight: bold;
+    font-size: 105%;
+    width: 600px;
+    margin-left: 318px;
+    &.success {
+    background-color: #64DA46;
+}
+&.error {
+    background-color: #CD1818;
+    color: white;
+    border: 1px solid navy;
+}
+}

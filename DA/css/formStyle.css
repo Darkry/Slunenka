@@ -1,0 +1,23 @@
+form table {
+    padding-bottom: 20px;
+}
+form table tr th {
+    text-align: right;
+    vertical-align: middle;
+    padding-right: 5px;
+}
+
+form table tr td input[type=submit] {
+    font-size: 17px;
+    color: black;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: #E9EFF8;
+    border: 1px solid gray;
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    padding: 5px;
+    cursor: pointer;
+    margin-top: 10px;
+}
