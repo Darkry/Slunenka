@@ -14,7 +14,7 @@
             <name>editTexts</name>
             <realName>Editovat texty</realName>
         </action>
-        <action state="on">
+        <action state="off">
             <name>deleteTexts</name>
             <realName>Mazat texty</realName>
         </action>

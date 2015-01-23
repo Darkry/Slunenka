@@ -67,7 +67,7 @@ if ($container->session->exists()) {
         ));
 
 	$container->router[] = $frontRouter = new RouteList('Front');
-	$frontRouter[] = new Route('<action>[/<id>]', 'Homepage:default');
+  $frontRouter[] = new Route('<presenter>/<action>/[/<id>]', 'Homepage:default');
 
 // Configure and run the application!
 $application = $container->application;

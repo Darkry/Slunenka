@@ -22,14 +22,21 @@
 <h2>Seznam {$presenter->getSetting("Items", "itemName")}</h2>
 
 <table class="stripedTable">
-    <tr class="th"><th>Název</th><th n:if="$presenter->isOptionAllowed('Items', 'description')">Popis</th><th n:if="$presenter->isOptionAllowed('Items','other')">{$presenter->getSetting("Items","otherName")}</th>
+
+    <tr class="th">
+        <th n:if="$presenter->isOptionAllowed('Items','date')">Datum:</th>
+        <th>Název</th><th n:if="$presenter->isOptionAllowed('Items', 'description')">Popis</th><th n:if="$presenter->isOptionAllowed('Items','other')">{$presenter->getSetting("Items","otherName")}</th>
         {if $presenter->isOptionAllowed("Items","image")}
             {for $i = 1; $i <= $presenter->getSetting("Items","imageCount"); $i++}
                 <th>Obrázek</th>
             {/for}
         {/if}
         <th></th></tr>
+
     <tr n:foreach="$items as $item"  n:class="$iterator->isOdd() ? odd">
+
+        <td n:if="$presenter->isOptionAllowed('Items','date')">{$item->getDate()|date:"j. n. Y H:i"}</td>
+
         <td>{$item->getName()}</td>
         {var $description = strip_tags($item->getDescription())}
         <td n:if="$presenter->isOptionAllowed('Items', 'description')">{!$description|truncate:50}</td>

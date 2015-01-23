@@ -27,6 +27,7 @@ class ListsPresenter extends \AdminModule\Security\SecuredPresenter {
         $form = new Form;
 
         $form->addText("name", "Název:")->setRequired("Název musíte vyplnit.");
+
         if ($this->isOptionAllowed("Items", "description")) {
             $form->addTextArea("description", "Popis: ");
             if($this->isOptionAllowed("Items","isDescriptionWYSIWYG"))
@@ -63,9 +64,15 @@ class ListsPresenter extends \AdminModule\Security\SecuredPresenter {
         $item->setName($val["name"]);
         if ($this->isOptionAllowed("Items", "description"))
             $item->setDescription($val["description"]);
+
         if ($this->isOptionAllowed("Items", "other"))
             $item->setOther($val["other"]);
+
         $item->setList($list);
+
+        if($this->isOptionAllowed("Items","other")) {
+            $item->setDate(new \DateTime("now"));
+        }
 
         $images = array();
         if($this->isOptionAllowed("Items", "image")) {

@@ -40,6 +40,11 @@ class ListItem extends \Nette\Object {
     /** @ORM\manyToOne(targetEntity="ListE", inversedBy="items") */
     private $list;
 
+    /** 
+    * @ORM\Column(type="datetime")
+    */
+    private $date;
+
     public function __construct() {
         $this->images = new \Doctrine\Common\Collections\ArrayCollection;
     }
@@ -82,6 +87,14 @@ class ListItem extends \Nette\Object {
 
     public function getList() {
         return $this->list;
+    }
+
+    public function setDate($date) {
+        $this->date = $date;
+    }
+
+    public function getDate() {
+        return $this->date;
     }
 
 }

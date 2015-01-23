@@ -2,10 +2,10 @@
 <root>
     <editable>true</editable>
     <hasPrivilegies>true</hasPrivilegies>
-    <realName>Reportáže z akcí</realName>
+    <realName>Novinky</realName>
     <component state="on">
         <name>Lists</name>
-        <realName>Kategorie</realName>
+        <realName>Typy novinek</realName>
         <action state="off">
             <name>addLists</name>
             <realName>Přidávat seznamy</realName>
@@ -25,30 +25,31 @@
     </component>
     <component state="on">
         <name>Items</name>
-        <realName>Položky</realName>
+        <realName>Novinky</realName>
         <action state="on">
             <name>addItems</name>
-            <realName>Přidávat položky</realName>
+            <realName>Přidávat novinky</realName>
         </action>
         <action state="on">
             <name>deleteItems</name>
-            <realName>Mazat položky</realName>
+            <realName>Mazat novinky</realName>
         </action>
         <action state="on">
             <name>editItems</name>
-            <realName>Upravovat položky</realName>
+            <realName>Upravovat novinky</realName>
         </action>
         <options>
             <set name="image">true</set>
             <set name="description">true</set>
             <set name="other">false</set>
             <set name="otherRequired">true</set>
+            <set name="date">true</set>
 
             <set name="isDescriptionWYSIWYG">false</set>
         </options>
         <settings>
             <set name="imageCount">1</set>
-            <set name="imageThumbnail">150x0</set>
+            <set name="imageThumbnail">100x0</set>
             <set name="otherName">Cena</set>
             <set name="itemName">novinka</set>
         </settings>

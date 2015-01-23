@@ -30,11 +30,15 @@
 
 <table class="stripedTable">
     <tr class="odd"><th>Název:</th><td>{$item->getName()}</td></tr>
+    
     {if $presenter->isOptionAllowed("Items","description")}
     <tr class="even"><th>Popis:</th><td>{!$item->getDescription()}</td></tr>
     {/if}
+
     {if $presenter->isOptionAllowed("Items","other")}
-    <tr class="even"><th>{$presenter->getSetting("Items", "otherName")}:</th><td>{$item->getOther()}</td></tr>
+    <tr class="even"><th>{$presenter->getSetting("Items", "otherName")}:</th><td>{$item->getOther()}</td></tr>  
     {/if}
+
+
 </table>
 <a href="#" class="hangingButton" id="openEditItemDialog">Upravit</a>
