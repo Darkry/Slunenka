@@ -159,6 +159,7 @@ menu {
 		text-transform: uppercase;
 		color: @darkPink;
 		padding-bottom: 15px;
+		margin-top: -10px;
 	}
 
 	h4 {
@@ -173,6 +174,7 @@ menu {
 		width: 33.3%;
 		float: left;
 		min-height: 480px;
+		margin-top: 10px;
 	}
 
 	div.columns.last {
