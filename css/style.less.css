@@ -18,6 +18,10 @@ body {
 	font-family: "Myriad Pro Regular", "Myriad Pro", serif;
 }
 
+div.clear {
+	clear: both;
+}
+
 #head {
 	width: 100%;
 	height: 188px;
@@ -133,9 +137,10 @@ menu {
 	min-height: 500px;
 	background-color: white;
 	margin-top: 10px;
+	padding-bottom: 10px;
 
 	div.content {
-		padding: 20px 20px 20px 20px;
+		padding: 20px 20px 10px 20px;
 		
 		h5 {
 			font-size: 13px;
@@ -173,13 +178,13 @@ menu {
 	div.columns {
 		width: 33.3%;
 		float: left;
-		min-height: 480px;
+		min-height: 200px;
 		margin-top: 10px;
 	}
 
-	div.columns.last {
-		border-left: 2px dashed #ccc;
+	div.columns.middle {
 		width: @columns;
+		border-right: 2px dashed #ccc;
 	}
 }
 
