@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-    <editable>true</editable>
+    <editable>false</editable>
     <hasPrivilegies>true</hasPrivilegies>
     <realName>Galerie</realName>
     <component state="on">
