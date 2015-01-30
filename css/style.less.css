@@ -11,7 +11,7 @@ html {
   background-size: cover;
 }
 
-body {
+#web {
 	width: 1024px;
 	margin: 0 auto;
 	padding: 0;
@@ -178,13 +178,14 @@ menu {
 	div.columns {
 		width: 33.3%;
 		float: left;
-		min-height: 200px;
+		min-height: 460px;
 		margin-top: 10px;
 	}
 
 	div.columns.middle {
 		width: @columns;
 		border-right: 2px dashed #ccc;
+		height: 100%;
 	}
 }
 
@@ -209,5 +210,38 @@ ul.linkList {
 		a {
 			color: @darkPink;
 		}
+	}
+}
+
+div.content div.novinka {
+	width: 800px;
+	padding-top: 10px;
+	margin: 0 auto;
+	div.left {
+		float: left;
+		width: 150px;
+		margin: 0 15px 30px 0;
+		text-align: center;
+		img {
+			max-height: 100px;
+			max-width: 150px;
+		}
+	}
+
+	div.right {
+		float: right;
+		width: 630px;
+		h3 {
+			font-size: 20px;
+			font-family: "Myriad Pro Bold", "Myriad Pro", serif;
+			padding: 5px 0;
+		}
+		small {
+			font-size: 14px;
+		}
+	}
+	
+	div.clear {
+		clear: both;
 	}
 }

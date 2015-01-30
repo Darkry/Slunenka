@@ -22,7 +22,8 @@ class SkolkaPresenter extends BasePresenter
 	}
 
 	public function renderNovinky() {
-		
+		$facade = $this->getContext()->listFacade;
+		$this->template->novinky = $facade->getListItems(1, true);
 	}
 
 	public function renderProbehlo() {

@@ -31,7 +31,14 @@ class ListFacade {
         return $this->listRep->find($id);
     }
 
-    public function getListItems($id) {
+    public function getListItems($id, $fromNewest=false) {
+        if($fromNewest == true) {
+            $qb = $this->itemRep->createQueryBuilder("e");
+            $qb->where("e.list.id = ")->where("e.list = ?1")->orderBy("e.date", "DESC");
+            $qb->setParameter(1, $id);
+            return $qb->getQuery()->getResult();
+        }
+
         return $this->listRep->find($id)->getItems();
     }
 

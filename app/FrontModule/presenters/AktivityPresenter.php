@@ -32,7 +32,8 @@ class AktivityPresenter extends BasePresenter
 	}
 
 	public function renderNovinky() {
-
+		$facade = $this->getContext()->listFacade;
+		$this->template->novinky = $facade->getListItems(2, true);
 	}
 
 	public function renderProbehlo() {

@@ -49,7 +49,7 @@
         </options>
         <settings>
             <set name="imageCount">1</set>
-            <set name="imageThumbnail">100x0</set>
+            <set name="imageThumbnail">160x0</set>
             <set name="otherName">Cena</set>
             <set name="itemName">novinka</set>
         </settings>

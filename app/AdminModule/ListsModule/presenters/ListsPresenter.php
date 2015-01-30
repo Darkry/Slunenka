@@ -70,7 +70,7 @@ class ListsPresenter extends \AdminModule\Security\SecuredPresenter {
 
         $item->setList($list);
 
-        if($this->isOptionAllowed("Items","other")) {
+        if($this->isOptionAllowed("Items","date")) {
             $item->setDate(new \DateTime("now"));
         }
 

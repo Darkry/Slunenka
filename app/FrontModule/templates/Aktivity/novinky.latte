@@ -1,0 +1,33 @@
+{var $active = "Novinky - další aktivity"}
+{block head}
+	<link rel="stylesheet" href="{$basePath}/css/lightbox.css" type="text/css">
+	<script type="text/javascript" src="{$basePath}/js/lightbox.js"></script>
+
+	<script type="text/javascript">
+		$().ready(function() {
+			$('div.novinka div.left a').lightBox();
+		});
+	</script>
+{/block}
+{block content}
+
+<div class="content">
+	{foreach $novinky as $novinka}
+		<div class="novinka">
+			<div class="left">
+				{var photo = $novinka->getImages()->first()}
+				<a href="{$basePath}/upload/{$photo->getImage()}">
+					<img src="{$basePath}/upload/{$photo->getThumbnail()}">
+				</a>
+			</div>
+			<div class="right">
+				<small>{$novinka->getDate()|date:"j. n. Y H:i"}</small>
+				<h3>{$novinka->getName()}</h3>
+				<div class="text">
+					{$novinka->getDescription()}
+				</div>
+			</div>
+			<div class="clear"></div>
+		</div>
+	{/foreach}
+</div>
