@@ -54,10 +54,6 @@ class ListFacade {
         return $this->itemRep->find($id);
     }
 
-    public function getAllItems() {
-        return $this->itemRep->findAll();
-    }
-
     public function deleteItem($id) {
         $item = $this->getItem($id);
 
