@@ -3,30 +3,44 @@ namespace FrontModule;
 
 use Nette\Application\UI\Form;
 
-class KdoJsmePresenter extends BasePresenter
+class KdoJsmePresenter extends SecurityPresenter
 {
+	
+	public function renderDefault($edit=false) {
+		$this->edit($edit);
+	}
 
-	public function renderKontakty() {
+	public function renderKontakty($edit=false) {
+		$this->edit($edit);
+
 		$facade = $this->getContext()->textFacade;
 		$this->template->text = $facade->getTextById(13);
 	}
 
-	public function renderLide() {
+	public function renderLide($edit=false) {
+		$this->edit($edit);
+
 		$facade = $this->getContext()->textFacade;
 		$this->template->text = $facade->getTextById(14);
 	}
 
-	public function renderONas() {
+	public function renderONas($edit=false) {
+		$this->edit($edit);
+
 		$facade = $this->getContext()->textFacade;
 		$this->template->text = $facade->getTextById(17);
 	}
 
-	public function renderSpolek() {
+	public function renderSpolek($edit=false) {
+		$this->edit($edit);
+
 		$facade = $this->getContext()->textFacade;
 		$this->template->text = $facade->getTextById(15);
 	}
 
-	public function renderMisto() {
+	public function renderMisto($edit=false) {
+		$this->edit($edit);
+
 		$facade = $this->getContext()->textFacade;
 		$this->template->text = $facade->getTextById(16);
 	}

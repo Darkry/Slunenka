@@ -3,10 +3,12 @@ namespace FrontModule;
 
 use Nette\Application\UI\Form;
 
-class HomepagePresenter extends BasePresenter
+class HomepagePresenter extends SecurityPresenter
 {
-	public function renderDefault()
+	public function renderDefault($edit=false)
 	{
+		$this->edit($edit);
+		
 		$this->template->items = $this->getContext()->listFacade->getAllItems();
 	}
 }

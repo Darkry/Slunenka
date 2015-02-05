@@ -5,7 +5,6 @@
     <meta name="description" content="">
     <meta name="keywords" content="">
 	<title>{ifset $title}{$title} | Sluněnka Olomouc{else}Sluněnka - lesní školka Olomouc{/ifset}</title>
-    <link rel="stylesheet" href="{$basePath}/css/reset.css" type="text/css">
     <link rel="stylesheet" href="{$basePath}/css/fonts.css" type="text/css">
 	<link rel="stylesheet" href="{$basePath}/css/style.css" type="text/css">
     <link rel="stylesheet" href="{$basePath}/css/superfish.css" type="text/css">
@@ -15,6 +14,29 @@
     <script type="text/javascript" src="{$basePath}/js/jquery.js"></script>
     <script type="text/javascript" src="{$basePath}/js/hoverIntent.js"></script>
     <script type="text/javascript" src="{$basePath}/js/superfish.js"></script>
+
+    {if $edit==true}
+        <script type="text/javascript" src="{$basePath}/js/jquery-ui.min.js"></script>
+        <link rel="stylesheet" href="{$basePath}/css/jquery-ui.min.css" type="text/css">
+
+        <script type="text/javascript" src="{$basePath}/js/raptor.min.js"></script>
+        <link rel="stylesheet" href="{$basePath}/css/raptor-front-end.min.css" type="text/css">
+
+        <script type="text/javascript">
+            jQuery(function($) {
+                $('.raptor-editable').raptor({
+                    plugins: {
+                        dock: {
+                            docked: false,
+                            dockToElement: true,
+                            persist: false
+                        }
+                    }
+
+                });
+            });
+        </script>
+    {/if}
 
     <script type="text/javascript">
         $(document).ready(function(){
@@ -28,6 +50,10 @@
 </head>
 
 <body>
+    {if $edit==true}
+        <h3><a n:href=":Admin:Text:Texts:">Zpátky do administrace</a></h3>
+    {/if}
+
     <div id="web">
         <div id="head">
             <div class="centerFrame">

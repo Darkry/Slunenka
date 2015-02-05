@@ -3,40 +3,58 @@ namespace FrontModule;
 
 use Nette\Application\UI\Form;
 
-class AktivityPresenter extends BasePresenter
+class AktivityPresenter extends SecurityPresenter
 {
 
-	public function renderNejmladsi() {
+	public function renderDefault($edit=false) {
+		$this->edit($edit);
+	}
+
+	public function renderNejmladsi($edit=false) {
+		$this->edit($edit);
+
 		$facade = $this->getContext()->textFacade;
 		$this->template->text = $facade->getTextById(4);
 	}
 
-	public function renderPredskolni() {
+	public function renderPredskolni($edit=false) {
+		$this->edit($edit);
+
 		$facade = $this->getContext()->textFacade;
 		$this->template->text = $facade->getTextById(5);
 	}
 
-	public function renderSkolaci() {
+	public function renderSkolaci($edit=false) {
+		$this->edit($edit);
+
 		$facade = $this->getContext()->textFacade;
 		$this->template->text = $facade->getTextById(6);
 	}
 
-	public function renderStarsi() {
+	public function renderStarsi($edit=false) {
+		$this->edit($edit);
+
 		$facade = $this->getContext()->textFacade;
 		$this->template->text = $facade->getTextById(7);
 	}
 
-	public function renderTerapie() {
+	public function renderTerapie($edit=false) {
+		$this->edit($edit);
+
 		$facade = $this->getContext()->textFacade;
 		$this->template->text = $facade->getTextById(8);
 	}
 
-	public function renderNovinky() {
+	public function renderNovinky($edit=false) {
+		$this->edit($edit);
+
 		$facade = $this->getContext()->listFacade;
 		$this->template->novinky = $facade->getListItems(2, true);
 	}
 
-	public function renderProbehlo() {
+	public function renderProbehlo($edit=false) {
+		$this->edit($edit);
+
 
 	}
 
