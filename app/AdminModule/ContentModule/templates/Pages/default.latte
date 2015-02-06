@@ -1,0 +1,7 @@
+{block content}
+<table class="stripedTable">
+    <tr class="th"><th>Název stránky</th><th>Odkaz</th></tr>
+    {foreach $pages as $page}
+        <tr><td>{$page->name}</td><td></td></tr>
+    {/foreach}
+</table>

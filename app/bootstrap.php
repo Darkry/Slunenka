@@ -47,6 +47,7 @@ $container->addService("userFacade", new Facade\UserFacade($container->getServic
 $container->addService("historyFacade", new Facade\HistoryFacade($container->getService("database")));
 $container->addService("galleryFacade", new Facade\GalleryFacade($container->getService("database")));
 $container->addService("listFacade", new Facade\ListFacade($container->getService("database")));
+$container->addService("contentFacade", new Facade\ContentFacade($container->getService("database")));
 
 $container->addService("acl", new AdminModule\Security\Acl($container->getService("aclFacade"), $cache, $container->getService("modulesInfoParser")));
 

@@ -48,14 +48,24 @@
              {if $user->isLoggedIn()}
                 <div id="leveMenu">
                     <ul>
-                       {var $m = $modules->getModuleInfo('TextModule')}
+                        {var $m = $modules->getModuleInfo('ContentModule')}
                         <li n:if="$m->isEditable()"><span>Obsah webu</span>
+                            <ul>
+                                <li style="list-style-image: url('{$basePath}/DA/icons/texts.png');" n:if="$m->getComponentState('Pages')">
+                                    <a n:href=":Admin:Content:Pages:">Stránky webu</a>
+                                </li>
+                            </ul>
+                        </li>
+
+                       {var $m = $modules->getModuleInfo('TextModule')}
+                        <li n:if="$m->isEditable()"><span>Texty na webu</span>
                             <ul>
                                 <li style="list-style-image: url('{$basePath}/DA/icons/texts.png');" n:if="$m->getComponentState('Texts')">
                                     <a n:href=":Admin:Text:Texts:">Texty na webu</a>
                                 </li>
                             </ul>
                         </li>
+
                         {var $m = $modules->getModuleInfo('GalleryModule')}
                         <li n:if="$m->isEditable()"><span>Galerie</span>
                             <ul>

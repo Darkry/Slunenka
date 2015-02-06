@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-    <editable>true</editable>
+    <editable>false</editable>
     <hasPrivilegies>true</hasPrivilegies>
     <realName>Texty na webu</realName>
     <component state="on">
