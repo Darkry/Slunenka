@@ -13,8 +13,10 @@ class AktivityPresenter extends SecurityPresenter
 	public function renderNejmladsi($edit=false) {
 		$this->edit($edit);
 
-		$facade = $this->getContext()->textFacade;
-		$this->template->text = $facade->getTextById(4);
+		$this->template->items = $this->getContext()->listFacade->getAllItems();
+
+		$this->template->editables = $this->getContext()->contentFacade->getEditablesForPage(2);
+
 	}
 
 	public function renderPredskolni($edit=false) {
