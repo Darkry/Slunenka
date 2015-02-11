@@ -26,4 +26,27 @@ abstract class SecurityPresenter extends BasePresenter {
         	$this->template->edit = false;
     }
 
+    public function handleSaveContent($json) {
+        if($this->isAjax()) {
+            $content = json_decode($json);
+            $db = $this->getContext()->contentFacade;
+
+            foreach($content as $id => $contentBox) {
+                if($db->doesExistFrameWithId($id)) {
+                    $db->updateFrame($id, $contentBox);
+                } else {
+                    $presenter = explode(":", $this->getName());
+                    $page = $presenter[1].":".$this->getAction(); //tvar adresy aktulní stránky
+
+                    $pageId = $db->getPageByLink($page)->getId();
+
+                    $db->addFrame($id, $contentBox, $pageId);
+                }
+            }
+
+            $this->payload->status = "ok";
+            $this->sendPayload();
+        }
+    }
+
 }

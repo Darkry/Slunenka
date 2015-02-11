@@ -24,16 +24,29 @@ class ContentFrames extends \Nette\Object {
     /** @ORM\manyToOne(targetEntity="WebPages", inversedBy="frames") */
     private $page;
 
+    /**
+     * @ORM\Column(type="string", length=50, unique=true)
+     */
+    private $contentId;
+
     public function getId() {
         return $this->id;
     }
 
-    public function setName($name) {
-        $this->name = $name;
+    public function setText($text) {
+        $this->text = $text;
     }
 
-    public function getName() {
-        return $this->name;
+    public function getText() {
+        return $this->text;
+    }
+
+    public function setContentId($contentId) {
+        $this->contentId = $contentId;
+    }
+
+    public function getContentId() {
+        return $this->contentId;
     }
 
     public function setPage(\Entity\WebPages $page) {

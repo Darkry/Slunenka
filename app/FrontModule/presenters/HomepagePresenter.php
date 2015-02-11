@@ -10,5 +10,7 @@ class HomepagePresenter extends SecurityPresenter
 		$this->edit($edit);
 		
 		$this->template->items = $this->getContext()->listFacade->getAllItems();
+
+		$this->template->editables = $this->getContext()->contentFacade->getEditablesForPage(1);
 	}
 }

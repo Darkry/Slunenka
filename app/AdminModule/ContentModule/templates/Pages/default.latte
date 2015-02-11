@@ -2,6 +2,7 @@
 <table class="stripedTable">
     <tr class="th"><th>Název stránky</th><th>Odkaz</th></tr>
     {foreach $pages as $page}
-        <tr><td>{$page->name}</td><td></td></tr>
+    {var link = ":Front:".$page->link."?edit=1"}
+        <tr><td>{$page->name}</td><td><a n:href="$link">Upravit</a></td></tr>
     {/foreach}
 </table>

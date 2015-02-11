@@ -17,15 +17,15 @@ class WebPages extends \Nette\Object {
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=100, unique=true)
+     * @ORM\Column(type="string", length=100)
      */
     private $name;
 
 
     /**
-     * @ORM\Column(type="string", length=100)
+     * @ORM\Column(type="string", length=100, unique=true)
      */
-    private $adress;
+    private $link;
 
     /**
      * @ORM\oneToMany(targetEntity="ContentFrames", mappedBy="page")
@@ -48,12 +48,12 @@ class WebPages extends \Nette\Object {
         return $this->name;
     }
 
-    public function setAdress($adress) {
-        $this->adress = $adress;
+    public function setLink($link) {
+        $this->link = $link;
     }
 
-    public function getAdress() {
-        return $this->name;
+    public function getLink() {
+        return $this->link;
     }
 
 

@@ -24,16 +24,30 @@
 
         <script type="text/javascript">
             jQuery(function($) {
+
                 $('.raptor-editable').raptor({
                     plugins: {
                         dock: {
                             docked: false,
                             dockToElement: true,
                             persist: false
+                        },
+                        save: {
+                            plugin: 'saveJson'
+                        },
+                        saveJson: {
+                            // The URL to which Raptor data will be POSTed
+                            url: {link saveContent!},
+                            // The parameter name for the posted data
+                            postName: 'json',
+                             // A string or function that returns the identifier for the Raptor instance being saved
+                            id: function() {
+                                return this.raptor.getElement().data('id');
+                            }
                         }
                     }
-
                 });
+
             });
         </script>
     {/if}
